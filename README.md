@@ -4,7 +4,6 @@ This web application creates 3 clocks showing the current time for LA Denver and
 
 Created by Sam Pearson using the Create React App
 
-\
 
 
 ---
