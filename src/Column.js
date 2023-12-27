@@ -4,18 +4,6 @@ import GetTime from './GetTime.js';
 import React, { useState, useEffect } from 'react';
 
 
-// TODO: see if there is a way to make this more extensible
-function TimeOffset(code){
-	switch(code){
-		case "LACA": return -8;
-		case "DNCO": return -7;
-		case "NYNY": return -5;
-		
-		default: return +9999;
-	}
-}
-
-
 function Column(props) {
 	
 	//TODO: review hooks more, this works but I need to better understand why and how
@@ -38,18 +26,14 @@ function Column(props) {
 	}, []);
 	
 	
-
-	// get the UTC mod for city of column
-	const utcOffset = TimeOffset(props.code);
-	
 	return (
 		<>
 			<div className="col-sm-4 text-center" >
 				<h2>{props.name}</h2>
 				
-				<p className="text-secondary">UTC {utcOffset}</p>
+				<p className="text-secondary">UTC {props.offset}</p>
 
-				<h3><GetTime offset={parseInt(utcOffset)} /></h3>
+				<h3><GetTime offset={parseInt(props.offset)} dst={parseInt(props.dst)} /></h3>
 			</div>
 		</>
 	);
