@@ -1,4 +1,4 @@
-// converts system local time to the given timezone UTC mod in props.offset
+// converts system local time given local time, city timezone UTC mod in props.offset
 
 
 // Daylight savings calculator
@@ -7,14 +7,16 @@ function localHasDST(date) {
 	let hasDSTNow = null;
 	
 	
+	
+	let winterGMTOffset = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
+	
+	let SummerGMTOffset = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+	
+	
 	// if there is a diffence between offsets client has DST at some point
-	let january = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
-	
-	let july = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
-	
 	
 	// if client region has dst AND the current offset matches summer then dst is in effect
-	if ((january !== july) && date.getTimezoneOffset() === july){
+	if ((winterGMTOffset !== SummerGMTOffset) && date.getTimezoneOffset() === SummerGMTOffset){
 		
 		hasDSTNow = true;
 		
@@ -29,7 +31,7 @@ function GetTime(props) {
 	let date = new Date();
 	
 	// convert local system timezone into negative UTC mod
-	let localOffset = date.getTimezoneOffset() / 60;
+	let localOffset = date.getTimezoneOffset() / 60; // mins / hours
 	
 	// account for local DST
 	if (localHasDST(date) && props.dst === 0){ 
