@@ -9,16 +9,21 @@ const cities = [
 ];
 	
 function Row() {
-	return (
+	
+	
+	const rowElement = (
 		<>
 			<div className="container mt-5">
 			  <div className="row">
 			  
-			  {cities.map((city) => <Column key={city.city} code={city.city} name={city.name} dst={city.dst} offset={city.offset} />)}
+			  {cities.map((city) => <Column code={city.city} name={city.name} dst={city.dst} offset={city.offset} />)}
 			  </div>
 			</div>
 		</>
 	);
+	
+	
+	return (rowElement);
 }
 
 export default Row;

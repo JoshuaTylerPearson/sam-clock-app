@@ -26,7 +26,7 @@ function Column(props) {
 	}, []);
 	
 	
-	return (
+	const columnElement = (
 		<>
 			<div className="col-sm-4 text-center" >
 				<h2>{props.name}</h2>
@@ -37,6 +37,9 @@ function Column(props) {
 			</div>
 		</>
 	);
+	
+	
+	return (columnElement);
 }
 
 export default Column;
